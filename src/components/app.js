@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+import TasksCounter from './tasks-counter'
+import ToDoList from './todo-list'
 export default class App extends Component {
     state = {
         arrOfTasks: [
@@ -11,9 +13,14 @@ export default class App extends Component {
 
     render() {
         const { appHeader } = this.props
+        const { arrOfTasks } = this.state
 
         return (
-            <h1>{appHeader}</h1>
+            <div>
+                <h1>{appHeader}</h1>
+                <TasksCounter arrOfTasks={arrOfTasks}/>
+                <ToDoList arrOfTasks={arrOfTasks}/>
+            </div>
         )
     }
 }
