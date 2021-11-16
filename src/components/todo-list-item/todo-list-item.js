@@ -15,12 +15,18 @@ const TodoListItem = (props) => {
 
     if (props.done) {
         classNamesForLabel += " done"
-        classNamesForBtn += " btn-outline-success hide"
+        classNamesForBtn += " hide"
         disabled = "disabled"
+
+        if (props.important) {
+            classNamesForBtn += " btn-success"
+        } else if (!props.important) {
+            classNamesForBtn += " btn-outline-success"
+        }
     }
 
     if (classNamesForBtn.length === classNamesForBtnLenghtBefore) {
-        classNamesForBtn += " btn-outline-secondary"
+        classNamesForBtn += " btn-outline-primary"
     }
 
     return (
