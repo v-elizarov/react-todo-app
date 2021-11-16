@@ -25,14 +25,17 @@ const TodoListItem = (props) => {
 
     return (
         <span className="todo-list-item">
-            <span className={classNamesForLabel}>
+            <span 
+                className={classNamesForLabel}
+                onClick={props.onToggleDone}>
                 {props.label}
             </span>
 
             <button
                 type="button"
                 className={classNamesForBtn}
-                disabled={disabled}>
+                disabled={disabled}
+                onClick={props.onToggleImportant}>
                 <i className="bi bi-exclamation"></i>
             </button>
             

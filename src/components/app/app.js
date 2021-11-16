@@ -29,6 +29,45 @@ export default class App extends Component {
         })
     }
 
+    onToggleProperty = (arr, id, field) => {
+       // find index of the task by id 
+       const indx = arr.findIndex((item) => item.id === id)
+       const task = arr[indx]
+       // invert the value
+       const newValue = !task[field]
+       // build a new task with the changed field (done/important)
+       const newTask = {
+           ...task,
+           [field]: newValue
+       }
+       // return a new arr that contains the changed task
+       return [
+           ...arr.slice(0, indx),
+           newTask,
+           ...arr.slice(indx + 1)
+       ]
+    }
+
+    onToggleDone = (id) => {
+        this.setState(({arrOfTasks}) => {
+            const arrOfNewData = this.onToggleProperty(arrOfTasks, id, 'done')
+
+            return {
+                arrOfTasks: arrOfNewData
+            }
+        })
+    }
+
+    onToggleImportant = (id) => {
+        this.setState(({arrOfTasks}) => {
+            const arrOfNewData = this.onToggleProperty(arrOfTasks, id, 'important')
+
+            return {
+                arrOfTasks: arrOfNewData
+            }
+        })
+    }
+
     render() {
         const { appHeader } = this.props
         const { arrOfTasks } = this.state
@@ -41,7 +80,9 @@ export default class App extends Component {
                 </div>
                 <ToDoList
                     arrOfTasks={arrOfTasks}
-                    onDeleteTask={this.onDeleteTask}/>
+                    onDeleteTask={this.onDeleteTask}
+                    onToggleDone={this.onToggleDone}
+                    onToggleImportant={this.onToggleImportant}/>
             </div>
         )
     }

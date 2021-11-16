@@ -12,7 +12,9 @@ const ToDoList = (props) => {
             <li key={id} className="list-group-item">
                 <TodoListItem 
                     {...other}
-                    onDeleteTask={() => props.onDeleteTask(id)}/>
+                    onDeleteTask={() => props.onDeleteTask(id)}
+                    onToggleDone={() => props.onToggleDone(id)}
+                    onToggleImportant={() => props.onToggleImportant(id)}/>
             </li>
         )
     })
