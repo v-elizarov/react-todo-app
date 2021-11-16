@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 
-import TasksCounter from './tasks-counter'
-import ToDoList from './todo-list'
+import TasksCounter from '../tasks-counter'
+import ToDoList from '../todo-list'
+
+import "./app.css"
 export default class App extends Component {
     state = {
         arrOfTasks: [
@@ -32,9 +34,11 @@ export default class App extends Component {
         const { arrOfTasks } = this.state
 
         return (
-            <div>
-                <h1>{appHeader}</h1>
-                <TasksCounter arrOfTasks={arrOfTasks}/>
+            <div className="wrapper">
+                <div className="flex-row">
+                    <h1>{appHeader}</h1>
+                    <TasksCounter arrOfTasks={arrOfTasks}/>
+                </div>
                 <ToDoList
                     arrOfTasks={arrOfTasks}
                     onDeleteTask={this.onDeleteTask}/>

@@ -1,5 +1,7 @@
 import React from 'react'
 
+import "./tasks-counter.css"
+
 const TasksCounter = (props) => {
     // count items with done === false
     const count = props.arrOfTasks.filter((item) => !item.done).length
@@ -7,7 +9,9 @@ const TasksCounter = (props) => {
     const done = props.arrOfTasks.filter((item) => item.done).length
     
     return (
-        <span>{count} more to do, {done} done</span>
+        <span className="tasks-counter">
+            {count} more to do, {done} done
+        </span>
     )
 }
 

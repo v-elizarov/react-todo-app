@@ -1,0 +1,15 @@
+.todo-list {
+    margin-bottom: 1rem;
+}
+
+.todo-list li {
+    line-height: 2;
+}
+
+.todo-list li:hover {
+    background-color: #F9F9F9;
+} 
+
+.todo-list li:hover .hide {
+    display: block;
+} 

@@ -1,6 +1,8 @@
 import React from 'react'
 
-import TodoListItem from './todo-list-item'
+import TodoListItem from '../todo-list-item'
+
+import "./todo-list.css"
 
 const ToDoList = (props) => {
     const listItems = props.arrOfTasks.map((item) => {
@@ -16,7 +18,7 @@ const ToDoList = (props) => {
     })
 
     return (
-        <ul className="list-group">
+        <ul className="list-group todo-list">
             { listItems }
         </ul>
     )
