@@ -2,9 +2,13 @@ import React, { Component } from 'react'
 
 import TasksCounter from '../tasks-counter'
 import ToDoList from '../todo-list'
+import FormAddNew from '../form-add-new'
 
 import "./app.css"
 export default class App extends Component {
+
+    uniqID = 3
+
     state = {
         arrOfTasks: [
             {id: 1, label: "Drink a cup of coffee", important: false, done: true},
@@ -27,6 +31,24 @@ export default class App extends Component {
                 arrOfTasks: arrOfNewData
             }
         })
+    }
+
+    onAddTask = (label) => {
+        this.setState(({arrOfTasks}) => {
+            const newTask = {
+                id: ++this.uniqID,
+                label: label,
+                important: false,
+                done: false
+            }
+
+            return {
+                arrOfTasks: [
+                    ...arrOfTasks,
+                    newTask
+                ]
+            }
+        })   
     }
 
     onToggleProperty = (arr, id, field) => {
@@ -83,6 +105,7 @@ export default class App extends Component {
                     onDeleteTask={this.onDeleteTask}
                     onToggleDone={this.onToggleDone}
                     onToggleImportant={this.onToggleImportant}/>
+                <FormAddNew onAddTask={this.onAddTask}/>
             </div>
         )
     }
