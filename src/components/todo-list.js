@@ -3,11 +3,21 @@ import React from 'react'
 import TodoListItem from './todo-list-item'
 
 const ToDoList = (props) => {
-    const {id, ...other} = props.arrOfTasks
+    const listItems = props.arrOfTasks.map((item) => {
+        const {id, ...other} = item
+
+        return (
+            <li key={id} className="list-group-item">
+                <TodoListItem 
+                    {...other}
+                    onDeleteTask={() => props.onDeleteTask(id)}/>
+            </li>
+        )
+    })
 
     return (
-        <ul>
-            
+        <ul className="list-group">
+            { listItems }
         </ul>
     )
 }

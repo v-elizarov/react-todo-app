@@ -11,6 +11,22 @@ export default class App extends Component {
         ]
     }
 
+    onDeleteTask = (id) => {
+        this.setState(({arrOfTasks}) => {
+            const indx = arrOfTasks.findIndex((item) => item.id === id)
+            
+            // create new array without the deleted item
+            const arrOfNewData = [
+                ...arrOfTasks.slice(0, indx),
+                ...arrOfTasks.slice(indx + 1)
+            ]
+
+            return {
+                arrOfTasks: arrOfNewData
+            }
+        })
+    }
+
     render() {
         const { appHeader } = this.props
         const { arrOfTasks } = this.state
@@ -19,7 +35,9 @@ export default class App extends Component {
             <div>
                 <h1>{appHeader}</h1>
                 <TasksCounter arrOfTasks={arrOfTasks}/>
-                <ToDoList arrOfTasks={arrOfTasks}/>
+                <ToDoList
+                    arrOfTasks={arrOfTasks}
+                    onDeleteTask={this.onDeleteTask}/>
             </div>
         )
     }
