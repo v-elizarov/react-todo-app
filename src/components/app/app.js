@@ -14,7 +14,9 @@ export default class App extends Component {
             {id: 1, label: "Drink a cup of coffee", important: false, done: true},
             {id: 2, label: "Create new react app", important: false, done: false},
             {id: 3, label: "Send my CV to a company", important: true, done: false}
-        ]
+        ],
+        filter: '',
+        search: ''
     }
 
     onDeleteTask = (id) => {
@@ -90,9 +92,23 @@ export default class App extends Component {
         })
     }
 
+    searchTasks(arr, search) {
+        if (search.length === 0) {
+            return arr
+        }
+
+        return arr.filter((item) => {
+            return item.label
+                .toLowerCase()
+                .indexOf(search.toLowerCase()) > -1
+        })
+    }
+
     render() {
         const { appHeader } = this.props
-        const { arrOfTasks } = this.state
+        const { arrOfTasks, search } = this.state
+
+        const arrOfVisibleTasks = this.searchTasks(arrOfTasks, search)
 
         return (
             <div className="wrapper">
@@ -101,7 +117,7 @@ export default class App extends Component {
                     <TasksCounter arrOfTasks={arrOfTasks}/>
                 </div>
                 <ToDoList
-                    arrOfTasks={arrOfTasks}
+                    arrOfTasks={arrOfVisibleTasks}
                     onDeleteTask={this.onDeleteTask}
                     onToggleDone={this.onToggleDone}
                     onToggleImportant={this.onToggleImportant}/>
