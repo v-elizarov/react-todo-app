@@ -15,8 +15,16 @@ export default class App extends Component {
             {id: 2, label: "Create new react app", important: false, done: false},
             {id: 3, label: "Send my CV to a company", important: true, done: false}
         ],
-        filter: '',
+        filter: 'done', // all, active, done
         search: ''
+    }
+
+    onFilterChange = (term) => {
+        this.setState({ filter: term })
+    }
+
+    onSearchChange = (term) => {
+        this.setState({ search: term })
     }
 
     onDeleteTask = (id) => {
@@ -92,6 +100,17 @@ export default class App extends Component {
         })
     }
 
+    filterTasks(arr, filter) {
+        switch (filter) {
+            case 'active':
+                return arr.filter((item) => !item.done)
+            case 'done':
+                return arr.filter((item) => item.done)
+            default:
+                return arr
+        }
+    }
+
     searchTasks(arr, search) {
         if (search.length === 0) {
             return arr
@@ -106,9 +125,9 @@ export default class App extends Component {
 
     render() {
         const { appHeader } = this.props
-        const { arrOfTasks, search } = this.state
+        const { arrOfTasks, search, filter } = this.state
 
-        const arrOfVisibleTasks = this.searchTasks(arrOfTasks, search)
+        const arrOfVisibleTasks = this.searchTasks(this.filterTasks(arrOfTasks, filter), search)
 
         return (
             <div className="wrapper">
