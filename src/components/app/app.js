@@ -4,6 +4,7 @@ import TasksCounter from '../tasks-counter'
 import ToDoList from '../todo-list'
 import FormAddNew from '../form-add-new'
 import SearchPanel from '../search-panel'
+import FilterPanel from '../filter-panel'
 
 import "./app.css"
 export default class App extends Component {
@@ -136,7 +137,10 @@ export default class App extends Component {
                     <h1>{appHeader}</h1>
                     <TasksCounter arrOfTasks={arrOfTasks}/>
                 </div>
-                <SearchPanel onSearchChange={this.onSearchChange}/>
+                <div className="flex-row">
+                    <SearchPanel onSearchChange={this.onSearchChange}/>
+                    <FilterPanel onFilterChange={this.onFilterChange}/>
+                </div>
                 <ToDoList
                     arrOfTasks={arrOfVisibleTasks}
                     onDeleteTask={this.onDeleteTask}
