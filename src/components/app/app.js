@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import TasksCounter from '../tasks-counter'
 import ToDoList from '../todo-list'
 import FormAddNew from '../form-add-new'
+import SearchPanel from '../search-panel'
 
 import "./app.css"
 export default class App extends Component {
@@ -15,7 +16,7 @@ export default class App extends Component {
             {id: 2, label: "Create new react app", important: false, done: false},
             {id: 3, label: "Send my CV to a company", important: true, done: false}
         ],
-        filter: 'done', // all, active, done
+        filter: 'all', // all, active, done
         search: ''
     }
 
@@ -135,6 +136,7 @@ export default class App extends Component {
                     <h1>{appHeader}</h1>
                     <TasksCounter arrOfTasks={arrOfTasks}/>
                 </div>
+                <SearchPanel onSearchChange={this.onSearchChange}/>
                 <ToDoList
                     arrOfTasks={arrOfVisibleTasks}
                     onDeleteTask={this.onDeleteTask}
