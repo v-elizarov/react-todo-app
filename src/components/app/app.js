@@ -5,6 +5,7 @@ import ToDoList from '../todo-list'
 import FormAddNew from '../form-add-new'
 import SearchPanel from '../search-panel'
 import FilterPanel from '../filter-panel'
+import AlertBox from '../alert-box'
 
 import "./app.css"
 export default class App extends Component {
@@ -141,6 +142,10 @@ export default class App extends Component {
                     <SearchPanel onSearchChange={this.onSearchChange}/>
                     <FilterPanel onFilterChange={this.onFilterChange}/>
                 </div>
+                <AlertBox
+                    countVisibleTasks={arrOfVisibleTasks.length}
+                    search={search}
+                    filter={filter}/>
                 <ToDoList
                     arrOfTasks={arrOfVisibleTasks}
                     onDeleteTask={this.onDeleteTask}
